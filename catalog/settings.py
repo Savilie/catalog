@@ -140,10 +140,10 @@ USE_TZ = True
 # development (NOT USE IN PROD)
 CORS_ALLOW_ALL_ORIGINS = True
 
-# CORS_ALLOWED_ORIGINS = [
-#    # real frontend host&port
-#    "http://frontend:5050"
-# ]
+#CORS_ALLOWED_ORIGINS = [
+#    #real frontend host&port
+#    "http://5.35.85.223/"
+#]
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = (
     "DELETE",

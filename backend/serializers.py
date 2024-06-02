@@ -5,7 +5,7 @@ from .models import *
 class ProductSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     title = serializers.CharField(max_length=255)
-    price = serializers.DecimalField(max_digits=10, decimal_places=2)
+    price = serializers.IntegerField(min_value=0)
     image = serializers.ImageField(allow_empty_file=False, allow_null=False)
 
     def create(self, validated_data):
