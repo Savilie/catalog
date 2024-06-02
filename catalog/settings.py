@@ -13,6 +13,7 @@ import os
 
 from pathlib import Path
 from dotenv import load_dotenv, find_dotenv
+from corsheaders.defaults import default_headers as cors_default_headers
 
 load_dotenv(find_dotenv())
 
@@ -30,8 +31,8 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if os.getenv('DEBUG') == 'True' else False
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['5.35.85.223', ]
+CSRF_TRUSTED_ORIGINS = ['http://*.5.35.85.223',]
 
 # Application definition
 
@@ -47,6 +48,7 @@ DEFAULT_APPS = [
 
 CUSTOM_APPS = [
     'rest_framework',
+    'corsheaders',
     'backend_users',
     'backend',
 ]
@@ -56,6 +58,7 @@ INSTALLED_APPS = DEFAULT_APPS+CUSTOM_APPS
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -134,12 +137,30 @@ USE_I18N = True
 
 USE_TZ = True
 
+# development (NOT USE IN PROD)
+CORS_ALLOW_ALL_ORIGINS = True
+
+# CORS_ALLOWED_ORIGINS = [
+#    # real frontend host&port
+#    "http://frontend:5050"
+# ]
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_METHODS = (
+    "DELETE",
+    "OPTIONS",
+    "GET",
+    "POST",
+    "PUT",
+)
+CORS_ALLOW_HEADERS = (
+    *cors_default_headers,
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'products/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'products')
+STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = []
 
 
