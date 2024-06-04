@@ -13,6 +13,14 @@ class ProductApiView(APIView):
     def get(self, request):
         products = Product.objects.all()
 
+        sort_by = request.query_params.get('sortBy')
+        if sort_by == 'price':
+            products = products.order_by('price')
+        elif sort_by == '-price':
+            products = products.order_by('-price')
+        elif sort_by == 'title':
+            products = products.order_by('title')
+
         return Response(ProductSerializer(products, many=True).data)
 
     def post(self, request):
