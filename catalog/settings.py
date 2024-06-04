@@ -33,7 +33,6 @@ DEBUG = True if os.getenv('DEBUG') == 'True' else False
 
 ALLOWED_HOSTS = ['5.35.85.223', ]
 
-CSRF_TRUSTED_ORIGINS = ['http://*.5.35.85.223']
 
 # Application definition
 
@@ -160,9 +159,6 @@ CORS_ALLOW_HEADERS = (
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = []
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
