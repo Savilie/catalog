@@ -14,6 +14,8 @@ class ProductApiView(APIView):
         products = Product.objects.all()
 
         sort_by = request.query_params.get('sortBy')
+        title_query = request.query_params.get('title')
+
         if sort_by == 'price':
             products = products.order_by('price')
         elif sort_by == '-price':
@@ -21,6 +23,9 @@ class ProductApiView(APIView):
         elif sort_by == 'title':
             products = products.order_by('title')
 
+        if title_query:
+            products = products.filter(title__icontains=title_query)
+            
         return Response(ProductSerializer(products, many=True).data)
 
     def post(self, request):

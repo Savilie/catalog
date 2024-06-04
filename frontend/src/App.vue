@@ -61,7 +61,7 @@ const fetchItems = async () => {
     }
 
     if (filters.searchQuery) {
-      params.title = `*${filters.searchQuery}*`;
+      params.title = `${filters.searchQuery}`;
     }
 
     const {data} = await axios.get('http://5.35.85.223/api/catalog/',{
